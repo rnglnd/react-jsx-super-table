@@ -11,35 +11,27 @@ type Props = {
   emptyMessage?: string,
   errorBodyClassName?: string,
   headClassName?: string,
-  headers: Array<any>,
-  onHeaderSortClick: (key: string) => void,
+  headers: Array<{key: string, value: string, sort?: boolean}>,
+  onHeaderSortClick?: (key: string) => void,
+  searchInputClassName?: string,
   searchPlaceholderText?: string,
-  tableFooter?: React.Node,
-  footerClassName?: string,
-  titleText?: string
+  sortingIconClassName?: string,
+  footer?: React.Node,
+  tableClassName?: string,
+  titleText?: string | React.Node,
+  titleTextClassName?: string
 };
 
 type State = {
   searchTerm: string
 };
 
-/*
-Only data and headers props are required to get this table to work.
-headers has a key as well as a value to get the sorting to work, passing back this via onHeaderSortClick.
-
-For use with pagination the viewMoreButton can be set (showViewMoreButton) and used by onClickViewMoreButton.
-*/
-
 class SuperTable extends React.Component<Props, State> {
   static defaultProps = {
-    bodyClassName: '',
-    className: '',
     emptyMessage: '',
-    errorBodyClassName: '',
-    headClassName: '',
-    onHeaderSortClick: () => {},
+    onHeaderSortClick: () => { },
     searchPlaceholderText: 'Search...',
-    tableFooter: null,
+    footer: null,
     titleText: ''
   };
 
@@ -47,13 +39,14 @@ class SuperTable extends React.Component<Props, State> {
     searchTerm: ''
   };
 
-  filterData = ({ target: { value } }: Object) => (
-    this.setState({ searchTerm: value })
+  filterData = ({target: {value}}: Object) => (
+    this.setState({searchTerm: value})
   );
 
   render() {
     const {
       bodyClassName,
+      className,
       colSpanForEmpty,
       data,
       emptyMessage,
@@ -62,56 +55,48 @@ class SuperTable extends React.Component<Props, State> {
       headers,
       onHeaderSortClick,
       searchPlaceholderText,
-      className,
-      tableFooter,
-      footerClassName,
-      titleText
+      footer,
+      searchInputClassName,
+      sortingIconClassName,
+      tableClassName,
+      titleText,
+      titleTextClassName
     } = this.props;
 
     const newData = this.props.data.filter((dataItem) => (
       dataItem.values.toLowerCase().includes(this.state.searchTerm.toLowerCase())
     ));
 
-
     return (
-      <table
+      <div
         className={className}
       >
-        <div className="table__title-bar">
-          <div className="table__title">
-            {titleText}
-          </div>
-          <div className="table__actions">
-            <label className="r7-label table__search">
-              <div className="input-w-icon input-w-icon--post">
-                <i className="r7-icon r7-icon-search input-icon table__search-icon" />
-                <DebounceInput
-                  className="r7-input table__search-input"
-                  debounceTimeout={200}
-                  minLength={0}
-                  onChange={this.filterData}
-                  placeholder={searchPlaceholderText}
-                />
-              </div>
-            </label>
-          </div>
+        <div className={titleTextClassName}>
+          {titleText}
+          <DebounceInput
+            className={searchInputClassName}
+            debounceTimeout={200}
+            minLength={0}
+            onChange={this.filterData}
+            placeholder={searchPlaceholderText}
+          />
         </div>
-        <div className="table__data">
+        <table className={tableClassName}>
           <thead className={headClassName}>
             <tr>
-            {headers.map((header) =>
-              <th key={header.key}>
-                {header.value}
-                {header.sort !== false
-                  && (
-                    <button
-                      className="r7-icon r7-icon-sort-arrows"
-                      onClick={() => onHeaderSortClick(header.key)}
-                    />
-                  )
-                }
-              </th>
-            )}
+              {headers.map((header) =>
+                <th key={header.key}>
+                  {header.value}
+                  {onHeaderSortClick && header.sort !== false
+                    && (
+                      <button
+                        className={sortingIconClassName}
+                        onClick={() => onHeaderSortClick(header.key)}
+                      />
+                    )
+                  }
+                </th>
+              )}
             </tr>
           </thead>
           {isEmpty(data)
@@ -133,9 +118,9 @@ class SuperTable extends React.Component<Props, State> {
               </tbody>
             )
           }
-        </div>
-        {tableFooter}
-      </table>
+        </table>
+        {footer}
+      </div>
     );
   };
 };
