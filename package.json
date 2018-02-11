@@ -1,0 +1,77 @@
+{
+  "name": "react-jsx-super-table",
+  "version": "1.0.0",
+  "description": "A lightweight table for a React app which takes JSX for the body (instead of a config). There&#39;s also config options for searching fields and sorting columns.",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "unpkg": "dist/SuperTable.min.js",
+  "scripts": {
+    "clean": "rimraf lib dist",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack",
+    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack",
+    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "flow": "flow",
+    "watch": "npm run build:commonjs -- --watch",
+    "start": "webpack-dev-server --config example/webpack.config.js",
+    "test": "jest --watchAll",
+    "test:once": "jest",
+    "lint": "eslint src test",
+    "lint:fix": "npm run lint -- --fix",
+    "postinstall": "npm run build",
+    "preversion": "npm run build",
+    "prepare": "npm run build"
+  },
+  "jest": {
+    "testRegex": "(/test/.*|(\\.|/))\\.js?$",
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ]
+  },
+  "keywords": [
+    "react",
+    "component"
+  ],
+  "peerDependencies": {
+    "ramda": "0.25.0",
+    "react": "^0.14.6 || 15.x.x || 16.x.x",
+    "react-debounce-input": "3.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-flow-react-proptypes": "13.0.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "enzyme": "^2.4.1",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-flowtype": "2.40.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "flow-bin": "^0.65.0",
+    "html-webpack-plugin": "^2.30.1",
+    "jest": "^18.1.0",
+    "ramda": "0.25.0",
+    "react": "^15.6.2",
+    "react-addons-test-utils": "^15.6.2",
+    "react-debounce-input": "3.2.0",
+    "react-dom": "^15.6.2",
+    "react-test-renderer": "^15.6.2",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.8.2"
+  }
+}
