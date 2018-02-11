@@ -49,9 +49,9 @@ There are other props you can avail of which are included in the table below:
 | searchPlaceholderText | string | No |
 | sortingIconClassName | string | No |
 | footer | node | No |
+| tableClassName | string | No |
 | titleText | string/node | No |
 | titleTextClassName | string | No |
-
 
 ## Development
 
