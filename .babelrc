@@ -1,6 +1,6 @@
 {
   "presets": ["react", "env", "stage-0", "flow"],
-  "plugins": ["add-module-exports", ["flow-react-proptypes", { "ignoreNodeModules": true }]],
+  "plugins": [["flow-react-proptypes", { "ignoreNodeModules": true }]],
   "env": {
     "es": {
       "comments": false,
