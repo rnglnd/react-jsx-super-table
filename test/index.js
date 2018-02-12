@@ -1,6 +1,6 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import SuperTable from '../src/index';
-import {shallow, mount} from 'enzyme';
 
 describe('<SuperTable />', () => {
   const callback = jest.fn();
@@ -9,7 +9,7 @@ describe('<SuperTable />', () => {
       bodyClassName="bodyClassName"
       className="className"
       data={[{
-        values: `First Org`,
+        values: 'First Org',
         row: (
           <tr
             key={1}
@@ -23,8 +23,8 @@ describe('<SuperTable />', () => {
       errorBodyClassName="errorBodyClassName"
       footer={<p>Pagination could go here.</p>}
       headers={[{
-        key: "name",
-        value: "Name"
+        key: 'name',
+        value: 'Name'
       }]}
       headClassName="headClassName"
       searchInputClassName="searchInputClassName"

@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from 'react';
-import {isEmpty, pluck} from 'ramda';
-import {DebounceInput} from 'react-debounce-input';
+import { isEmpty, pluck } from 'ramda';
+import { DebounceInput } from 'react-debounce-input';
 
 type Props = {
   bodyClassName?: string,
@@ -39,8 +39,8 @@ class SuperTable extends React.Component<Props, State> {
     searchTerm: ''
   };
 
-  filterData = ({target: {value}}: Object) => (
-    this.setState({searchTerm: value})
+  filterData = ({ target: { value } }: Object) => (
+    this.setState({ searchTerm: value })
   );
 
   render() {
@@ -63,7 +63,7 @@ class SuperTable extends React.Component<Props, State> {
       titleTextClassName
     } = this.props;
 
-    const newData = this.props.data.filter((dataItem) => (
+    const newData = this.props.data.filter(dataItem => (
       dataItem.values.toLowerCase().includes(this.state.searchTerm.toLowerCase())
     ));
 
@@ -84,7 +84,7 @@ class SuperTable extends React.Component<Props, State> {
         <table className={tableClassName}>
           <thead className={headClassName}>
             <tr>
-              {headers.map((header) =>
+              {headers.map(header =>
                 <th key={header.key}>
                   {header.value}
                   {onHeaderSortClick && header.sort !== false
@@ -122,7 +122,7 @@ class SuperTable extends React.Component<Props, State> {
         {footer}
       </div>
     );
-  };
-};
+  }
+}
 
 export default SuperTable;

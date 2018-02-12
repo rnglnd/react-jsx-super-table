@@ -19,6 +19,7 @@
     "brace-style": [2, "stroustrup"]
   },
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ]
 }

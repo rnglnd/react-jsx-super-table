@@ -46,17 +46,17 @@
     "react-debounce-input": "3.2.0"
   },
   "peerDependencies": {
-    "react": "15.x.x || 16.x.x",
-    "react-dom": "15.x.x || 16.x.x"
+    "react": "^0.14.6 || 15.x.x || 16.x.x"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-jest": "^22.2.2",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-flow-react-proptypes": "^17.1.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -68,7 +68,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-flowtype": "2.40.1",
+    "eslint-plugin-flowtype": "^2.40.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
