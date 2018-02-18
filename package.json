@@ -1,6 +1,6 @@
 {
   "name": "react-jsx-super-table",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description":
     "A lightweight table for a React app which takes JSX for the body (instead of a config). There&#39;s also config options for searching fields and sorting columns.",
   "main": "lib/index.js",
@@ -10,16 +10,14 @@
   "jsnext:main": "es/index.js",
   "unpkg": "dist/SuperTable.min.js",
   "scripts": {
-    "clean": "rimraf lib && rimraf es",
+    "build": "babel src/ -d lib/",
+    "clean": "rimraf lib",
     "precommit": "npm test && lint-staged",
+    "flow": "flow",
     "test": "jest",
-    "dev": "npm run webpack:watch",
-    "webpack:watch":
-      "webpack-dev-server --hot --inline --progress --colors --config=webpack.config.js",
+    "dev": "webpack-dev-server --hot --inline --progress --colors --config=webpack.config.js",
     "start": "npm run dev",
-    "prepublish": "npm run clean && npm run transpile:lib && npm run transpile:es",
-    "transpile:es": "BABEL_ENV=es babel src --out-dir es --copy-files",
-    "transpile:lib": "babel src --out-dir lib --copy-files"
+    "prepublish": "npm run clean && npm run build"
   },
   "lint-staged": {
     "*.{js,jsx,json}": ["prettier-eslint --write", "git add"]
@@ -28,10 +26,10 @@
     "transform": {
       "^.+\\.js$": "./node_modules/babel-jest"
     },
-    "testRegex": "(/test/.*|(\\.|/))\\.js?$",
+    "testRegex": "(/__tests__/.*|(\\.|/))\\.js?$",
     "moduleFileExtensions": ["js", "json"]
   },
-  "keywords": ["react", "component"],
+  "keywords": ["react", "component", "table", "grid"],
   "dependencies": {
     "ramda": "0.25.0",
     "react-debounce-input": "3.2.0"

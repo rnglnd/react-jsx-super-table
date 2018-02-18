@@ -7,13 +7,10 @@ module.exports = {
   cache: true,
   entry: ['./DEV_ONLY/dev.js'],
   resolve: {
-    modules: ['node_modules', path.resolve(__dirname, 'src')],
-    alias: {
-      react: path.join(__dirname, '/node_modules/react'),
-    },
+    modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src')],
   },
   output: {
-    filename: 'react-jsx-super-table.js',
+    filename: 'index.js',
     publicPath: 'http://localhost:3000/',
   },
   module: {
@@ -22,24 +19,6 @@ module.exports = {
         test: /\.js?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: {
-          cacheDirectory: true,
-          presets: [
-            [
-              'env',
-              {
-                loose: true,
-                targets: {
-                  browsers: ['last 2 versions', 'ie 11'],
-                },
-              },
-            ],
-            'react',
-            ['env', { modules: false }],
-            'stage-2',
-          ],
-          plugins: [],
-        },
       },
       {
         test: /\.js$/,
@@ -60,13 +39,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      debug: true,
-    }),
-  ],
-  externals: [{ fs: '{}' }, { tls: '{}' }, { 'utf-8-validate': '{}' }, { bufferutil: '{}' }],
+  plugins: [new HtmlWebpackPlugin()],
   devtool: 'source-map',
   devServer: {
     contentBase: 'assets',

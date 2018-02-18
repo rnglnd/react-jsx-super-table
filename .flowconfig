@@ -3,9 +3,9 @@
 [include]
 src
 [libs]
-flow-typed
+
 [lints]
 
 [options]
-
+module.name_mapper='modules' -> '<PROJECT_ROOT>/node_modules'
 [strict]

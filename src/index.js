@@ -22,9 +22,7 @@ type Props = {
   titleTextClassName?: string,
 };
 
-type State = {
-  searchTerm: string,
-};
+type State = {};
 
 class SuperTable extends React.Component<Props, State> {
   static defaultProps = {
