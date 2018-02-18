@@ -1,14 +1,10 @@
 {
-  "presets": ["react", "env", "stage-0", "flow"],
+  "presets": ["react", "env", "stage-2", "flow"],
   "plugins": [["flow-react-proptypes", { "ignoreNodeModules": true }]],
   "env": {
     "es": {
-      "comments": false,
-      "minified": true
-    },
-    "commonjs": {
-      "comments": false,
-      "minified": true
+      "loose": true,
+      "modules": false
     }
   }
 }
