@@ -81,12 +81,6 @@ Lint `src` and `test` files:
 $ npm run lint
 ```
 
-Generate UMD output in the `lib` folder (runs implicitly on `npm version`):
-
-```
-$ npm run build
-```
-
 ## Releasing
 
 After ensuring all the tests pass/writing new ones when adding features, version the component (we follow [https://semver.org/](https://semver.org/)) using `npm version <patch/minor/major>`.
