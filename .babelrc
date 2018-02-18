@@ -3,6 +3,7 @@
   "plugins": [["flow-react-proptypes", { "ignoreNodeModules": true }]],
   "env": {
     "es": {
+      "comments": false,
       "loose": true,
       "modules": false
     }
