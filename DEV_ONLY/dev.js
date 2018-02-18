@@ -1,29 +1,33 @@
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
 import SuperTable from '../src/index';
 import './style.css';
 
+const div = document.createElement('div');
+document.body.appendChild(div);
 const organizations = [{
   id: 1,
-  name: "First Org",
-  type: "first"
+  name: 'First Org',
+  type: 'first',
 }, {
   id: 2,
-  name: "Second Org",
-  type: "first"
+  name: 'Second Org',
+  type: 'first',
 }, {
   id: 3,
-  name: "Third Org",
-  type: "second"
+  name: 'Third Org',
+  type: 'second',
 }, {
   id: 4,
-  name: "Fourth Org",
-  type: "second"
+  name: 'Fourth Org',
+  type: 'second',
 }];
 
+/* eslint-disable */
 // https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
-// This is a really nice sorting function which I've found to be much more accurate than anything else I've tried.
-const compareSortingValues = (key: string, order: boolean = true): Function => 
+// This is a really nice sorting function
+// which I've found to be much more accurate than anything else I've tried.
+const compareSortingValues = (key: string, order: boolean = true): Function =>
   (a: Object, b: Object): number | boolean => {
     if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       // property doesn't exist on either object
@@ -47,24 +51,25 @@ const compareSortingValues = (key: string, order: boolean = true): Function =>
       order ? (comparison * -1) : comparison
     );
   };
+/* eslint-enable */
 
 class Example extends React.Component {
   state = {
     columnToSort: '',
-    columnSortAsc: false
+    columnSortAsc: false,
   };
 
   onHeaderSortClick = (key: string): void => (
     this.setState({
       columnSortAsc: !this.state.columnSortAsc,
-      columnToSort: key
+      columnToSort: key,
     })
   );
 
   render() {
     const {
       columnToSort,
-      columnSortAsc
+      columnSortAsc,
     } = this.state;
 
     return (
@@ -75,33 +80,35 @@ class Example extends React.Component {
           className="container"
           colSpanForEmpty="2"
           data={
-            organizations.sort(compareSortingValues(columnToSort, columnSortAsc)).map((organization) => ({
-              values: `${organization.name}${organization.type}`,
-              row: (
-                <tr
-                  key={organization.id}
-                >
-                  <td>
-                    {organization.name}
-                  </td>
-                  <td>
-                    {organization.type}
-                  </td>
-                </tr>
-              )
-            }))
+            organizations
+              .sort(compareSortingValues(columnToSort, columnSortAsc))
+              .map(organization => ({
+                values: `${organization.name}${organization.type}`,
+                row: (
+                  <tr
+                    key={organization.id}
+                  >
+                    <td>
+                      {organization.name}
+                    </td>
+                    <td>
+                      {organization.type}
+                    </td>
+                  </tr>
+                ),
+              }))
           }
           footer={<p>Pagination could go here.</p>}
           emptyMessage={"There's no data."}
           headers={[
             {
-              key: "name",
-              value: "Name"
+              key: 'name',
+              value: 'Name',
             },
             {
-              key: "type",
-              value: "Type"
-            }
+              key: 'type',
+              value: 'Type',
+            },
           ]}
           onHeaderSortClick={this.onHeaderSortClick}
           tableClassName="table"
@@ -110,10 +117,7 @@ class Example extends React.Component {
         />
       </div>
     );
-  };
-};
+  }
+}
 
-render(
-  <Example />,
-  document.getElementById('root')
-);
+ReactDOM.render(<Example />, div);

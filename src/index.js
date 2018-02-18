@@ -11,7 +11,7 @@ type Props = {
   emptyMessage?: string,
   errorBodyClassName?: string,
   headClassName?: string,
-  headers: Array<{key: string, value: string, sort?: boolean}>,
+  headers: Array<{ key: string, value: string, sort?: boolean }>,
   onHeaderSortClick?: (key: string) => void,
   searchInputClassName?: string,
   searchPlaceholderText?: string,
@@ -19,29 +19,27 @@ type Props = {
   footer?: React.Node,
   tableClassName?: string,
   titleText?: string | React.Node,
-  titleTextClassName?: string
+  titleTextClassName?: string,
 };
 
 type State = {
-  searchTerm: string
+  searchTerm: string,
 };
 
 class SuperTable extends React.Component<Props, State> {
   static defaultProps = {
     emptyMessage: '',
-    onHeaderSortClick: () => { },
+    onHeaderSortClick: () => {},
     searchPlaceholderText: 'Search...',
     footer: null,
-    titleText: ''
+    titleText: '',
   };
 
   state = {
-    searchTerm: ''
+    searchTerm: '',
   };
 
-  filterData = ({ target: { value } }: Object) => (
-    this.setState({ searchTerm: value })
-  );
+  filterData = ({ target: { value } }: Object) => this.setState({ searchTerm: value });
 
   render() {
     const {
@@ -60,17 +58,15 @@ class SuperTable extends React.Component<Props, State> {
       sortingIconClassName,
       tableClassName,
       titleText,
-      titleTextClassName
+      titleTextClassName,
     } = this.props;
 
-    const newData = this.props.data.filter(dataItem => (
-      dataItem.values.toLowerCase().includes(this.state.searchTerm.toLowerCase())
-    ));
+    const newData = this.props.data.filter(dataItem =>
+      dataItem.values.toLowerCase().includes(this.state.searchTerm.toLowerCase()),
+    );
 
     return (
-      <div
-        className={className}
-      >
+      <div className={className}>
         <div className={titleTextClassName}>
           {titleText}
           <DebounceInput
@@ -84,40 +80,31 @@ class SuperTable extends React.Component<Props, State> {
         <table className={tableClassName}>
           <thead className={headClassName}>
             <tr>
-              {headers.map(header =>
+              {headers.map(header => (
                 <th key={header.key}>
                   {header.value}
-                  {onHeaderSortClick && header.sort !== false
-                    && (
+                  {onHeaderSortClick &&
+                    header.sort !== false && (
                       <button
                         className={sortingIconClassName}
                         onClick={() => onHeaderSortClick(header.key)}
                       />
-                    )
-                  }
+                    )}
                 </th>
-              )}
+              ))}
             </tr>
           </thead>
-          {isEmpty(data)
-            ? (
-              <tbody className={errorBodyClassName}>
-                <tr>
-                  <td
-                    className="empty--cell"
-                    colSpan={colSpanForEmpty}
-                  >
-                    <p>{emptyMessage}</p>
-                  </td>
-                </tr>
-              </tbody>
-            )
-            : (
-              <tbody className={bodyClassName}>
-                {pluck('row', newData)}
-              </tbody>
-            )
-          }
+          {isEmpty(data) ? (
+            <tbody className={errorBodyClassName}>
+              <tr>
+                <td className="empty--cell" colSpan={colSpanForEmpty}>
+                  <p>{emptyMessage}</p>
+                </td>
+              </tr>
+            </tbody>
+          ) : (
+            <tbody className={bodyClassName}>{pluck('row', newData)}</tbody>
+          )}
         </table>
         {footer}
       </div>
