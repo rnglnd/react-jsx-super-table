@@ -10,13 +10,15 @@
   "jsnext:main": "es/index.js",
   "unpkg": "dist/SuperTable.min.js",
   "scripts": {
-    "build": "babel src/ -d lib/",
+    "build": "npm run transpile:lib && npm run transpile:es",
     "clean": "rimraf lib",
     "precommit": "npm test && lint-staged",
     "flow": "flow",
     "test": "jest",
     "dev": "webpack-dev-server --hot --inline --progress --colors --config=webpack.config.js",
     "start": "npm run dev",
+    "transpile:lib": "babel src/ -d lib/",
+    "transpile:es": "BABEL_ENV=es babel src/ -d es/",
     "prepublish": "npm run clean && npm run build"
   },
   "lint-staged": {
@@ -31,7 +33,6 @@
   },
   "keywords": ["react", "component", "table", "grid"],
   "dependencies": {
-    "ramda": "0.25.0",
     "react-debounce-input": "3.2.0"
   },
   "peerDependencies": {

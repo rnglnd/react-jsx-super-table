@@ -1,4 +1,26 @@
 {
-  "presets": ["react", "env", "stage-2", "flow"],
-  "plugins": [["flow-react-proptypes", { "ignoreNodeModules": true }]]
+  "env": {
+    "development": {
+      "presets": ["env", "react", "stage-2", "flow"],
+      "plugins": [["flow-react-proptypes", { "ignoreNodeModules": true }]]
+    },
+    "test": {
+      "presets": ["env", "react", "stage-2", "flow"],
+      "plugins": [["flow-react-proptypes", { "ignoreNodeModules": true }]]
+    },
+    "es": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": false
+          }
+        ],
+        "react",
+        "stage-2",
+        "flow"
+      ],
+      "plugins": [["flow-react-proptypes", { "ignoreNodeModules": true }]]
+    }
+  }
 }

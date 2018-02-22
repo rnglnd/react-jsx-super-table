@@ -1,6 +1,5 @@
 /* @flow */
 import * as React from 'react';
-import { isEmpty, pluck } from 'ramda';
 import { DebounceInput } from 'react-debounce-input';
 
 type Props = {
@@ -94,7 +93,7 @@ class SuperTable extends React.Component<Props, State> {
               ))}
             </tr>
           </thead>
-          {isEmpty(data) ? (
+          {!data.length ? (
             <tbody className={errorBodyClassName}>
               <tr>
                 <td className="empty--cell" colSpan={colSpanForEmpty}>
@@ -103,7 +102,7 @@ class SuperTable extends React.Component<Props, State> {
               </tr>
             </tbody>
           ) : (
-            <tbody className={bodyClassName}>{pluck('row', newData)}</tbody>
+            <tbody className={bodyClassName}>{newData.map(({ row }) => row)}</tbody>
           )}
         </table>
         {footer}
