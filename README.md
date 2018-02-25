@@ -1,4 +1,6 @@
 # react-jsx-super-table
+[![npm](https://img.shields.io/npm/v/react-jsx-super-table.svg)](https://www.npmjs.com/package/react-jsx-super-table)
+
 
 #### A lightweight table for a React app which takes JSX for the body (instead of a config). There's also config options for searching fields and sorting columns.
 

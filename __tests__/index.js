@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SuperTable from '../src/index';
+import SuperTable from '../src/';
 
 describe('<SuperTable />', () => {
   const callback = jest.fn();
@@ -8,31 +8,31 @@ describe('<SuperTable />', () => {
     <SuperTable
       bodyClassName="bodyClassName"
       className="className"
-      data={[{
-        values: 'First Org',
-        row: (
-          <tr
-            key={1}
-          >
-            <td>
-              First Org
-            </td>
-          </tr>
-        )
-      }]}
+      data={[
+        {
+          values: 'First Org',
+          row: (
+            <tr key={1}>
+              <td>First Org</td>
+            </tr>
+          ),
+        },
+      ]}
       errorBodyClassName="errorBodyClassName"
       footer={<p>Pagination could go here.</p>}
-      headers={[{
-        key: 'name',
-        value: 'Name'
-      }]}
+      headers={[
+        {
+          key: 'name',
+          value: 'Name',
+        },
+      ]}
       headClassName="headClassName"
       searchInputClassName="searchInputClassName"
       sortingIconClassName="sortingIconClassName"
       tableClassName="tableClassName"
       titleTextClassName="titleTextClassName"
       onHeaderSortClick={callback}
-    />
+    />,
   );
 
   it('Should test all class names', () => {
