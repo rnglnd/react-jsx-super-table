@@ -1,6 +1,6 @@
 {
   "name": "react-jsx-super-table",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description":
     "A lightweight table for a React app which takes JSX for the body (instead of a config). There&#39;s also config options for searching fields and sorting columns.",
   "main": "lib/index.js",

@@ -1,11 +1,7 @@
 /* @flow */
 import React from 'react';
-import ReactDOM from 'react-dom';
 import SuperTable from '../src/index';
-import './style.css';
 
-const div = document.createElement('div');
-document.body.appendChild(div);
 const organizations = [
   {
     id: 1,
@@ -57,7 +53,14 @@ const compareSortingValues = (key: string, order: boolean = true): Function => (
 };
 /* eslint-enable */
 
-class Example extends React.Component {
+type State = {
+  columnSortAsc: boolean,
+  columnToSort: string
+};
+
+type Props = {}
+
+class WithSorting extends React.Component<Props, State> {
   state = {
     columnToSort: '',
     columnSortAsc: false,
@@ -74,7 +77,7 @@ class Example extends React.Component {
 
     return (
       <div>
-        <h1>react-jsx-super-table</h1>
+        <h2>With Sorting</h2>
 
         <SuperTable
           className="container"
@@ -90,7 +93,6 @@ class Example extends React.Component {
                 </tr>
               ),
             }))}
-          footer={<p>Pagination could go here.</p>}
           emptyMessage={"There's no data."}
           headers={[
             {
@@ -112,4 +114,4 @@ class Example extends React.Component {
   }
 }
 
-ReactDOM.render(<Example />, div);
+export default WithSorting;

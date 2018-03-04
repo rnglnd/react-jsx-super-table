@@ -1,6 +1,6 @@
-/* @flow */
 import * as React from 'react';
 import { DebounceInput } from 'react-debounce-input';
+/* @flow */
 
 type Props = {
   bodyClassName?: string,

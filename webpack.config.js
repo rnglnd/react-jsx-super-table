@@ -5,7 +5,7 @@ let webpack = require('webpack'),
 module.exports = {
   target: 'web',
   cache: true,
-  entry: ['./DEV_ONLY/dev.js'],
+  entry: './examples',
   resolve: {
     modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src')],
   },
