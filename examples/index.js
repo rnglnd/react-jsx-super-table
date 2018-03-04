@@ -5,6 +5,7 @@ import './style.css';
 import WithSorting from './WithSorting';
 import WithoutSorting from './WithoutSorting';
 import WithSimplePagination from './WithSimplePagination';
+import OneWithEverything from './OneWithEverything';
 
 const div = document.createElement('div');
 
@@ -20,6 +21,8 @@ const Example = () => (
     <WithoutSorting />
     <hr />
     <WithSimplePagination />
+    <hr />
+    <OneWithEverything />
   </div>
 );
 
