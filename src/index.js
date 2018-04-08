@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DebounceInput } from 'react-debounce-input';
+import debounce from 'lodash.debounce';
 /* @flow */
 
 type Props = {
@@ -38,7 +38,12 @@ class SuperTable extends React.Component<Props, State> {
     searchTerm: '',
   };
 
-  filterData = ({ target: { value } }: Object) => this.setState({ searchTerm: value });
+  debouncedFilter = debounce((searchTerm: string) => this.setState({ searchTerm }), 200);
+
+  filterData = ({ target: { value } }: Object) => {
+    const searchTerm = value;
+    return this.debouncedFilter(searchTerm);
+  };
 
   render() {
     const {
@@ -60,7 +65,7 @@ class SuperTable extends React.Component<Props, State> {
       titleTextClassName,
     } = this.props;
 
-    const newData = this.props.data.filter(dataItem =>
+    const newData = this.props.data.filter((dataItem: Array<any>) =>
       dataItem.values.toLowerCase().includes(this.state.searchTerm.toLowerCase()),
     );
 
@@ -68,10 +73,8 @@ class SuperTable extends React.Component<Props, State> {
       <div className={className}>
         <div className={titleTextClassName}>
           {titleText}
-          <DebounceInput
+          <input
             className={searchInputClassName}
-            debounceTimeout={200}
-            minLength={0}
             onChange={this.filterData}
             placeholder={searchPlaceholderText}
           />
