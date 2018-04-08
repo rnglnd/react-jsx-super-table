@@ -33,7 +33,7 @@
   },
   "keywords": ["react", "component", "table", "grid"],
   "dependencies": {
-    "react-debounce-input": "3.2.0"
+    "lodash.debounce": "4.0.8"
   },
   "peerDependencies": {
     "react": "^0.14.6 || 15.x.x || 16.x.x",
