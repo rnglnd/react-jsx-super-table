@@ -6,23 +6,23 @@ const organizations = [
   {
     id: 1,
     name: 'First Org',
-    type: 'first',
+    type: 'first'
   },
   {
     id: 2,
     name: 'Second Org',
-    type: 'first',
+    type: 'first'
   },
   {
     id: 3,
     name: 'Third Org',
-    type: 'second',
+    type: 'second'
   },
   {
     id: 4,
     name: 'Fourth Org',
-    type: 'second',
-  },
+    type: 'second'
+  }
 ];
 
 /* eslint-disable */
@@ -31,7 +31,7 @@ const organizations = [
 // which I've found to be much more accurate than anything else I've tried.
 const compareSortingValues = (key: string, order: boolean = true): Function => (
   a: Object,
-  b: Object,
+  b: Object
 ): number | boolean => {
   if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
     // property doesn't exist on either object
@@ -58,18 +58,18 @@ type State = {
   columnToSort: string
 };
 
-type Props = {}
+type Props = {};
 
 class WithSorting extends React.Component<Props, State> {
   state = {
     columnToSort: '',
-    columnSortAsc: false,
+    columnSortAsc: false
   };
 
   onHeaderSortClick = (key: string): void =>
     this.setState({
       columnSortAsc: !this.state.columnSortAsc,
-      columnToSort: key,
+      columnToSort: key
     });
 
   render() {
@@ -91,18 +91,18 @@ class WithSorting extends React.Component<Props, State> {
                   <td>{organization.name}</td>
                   <td>{organization.type}</td>
                 </tr>
-              ),
+              )
             }))}
-          emptyMessage={"There's no data."}
+          emptyMessage={'There\'s no data.'}
           headers={[
             {
               key: 'name',
-              value: 'Name',
+              value: 'Name'
             },
             {
               key: 'type',
-              value: 'Type',
-            },
+              value: 'Type'
+            }
           ]}
           onHeaderSortClick={this.onHeaderSortClick}
           tableClassName="table"

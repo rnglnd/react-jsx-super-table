@@ -1,12 +1,29 @@
 import * as React from 'react';
-import debounce from 'lodash.debounce';
 /* @flow */
+
+const debounce = (callback, timeout) => {
+  let interval;
+
+  return (...args) => {
+    if (timeout <= 0) {
+      return callback(...args);
+    }
+
+    clearTimeout(interval);
+
+    interval = setTimeout(() => {
+      interval = null;
+      callback(...args);
+    }, timeout);
+  };
+};
 
 type Props = {
   bodyClassName?: string,
   className?: string,
   colSpanForEmpty?: string,
   data: Array<any>,
+  debounceTimeout?: number,
   emptyMessage?: string,
   errorBodyClassName?: string,
   headClassName?: string,
@@ -18,27 +35,32 @@ type Props = {
   footer?: React.Node,
   tableClassName?: string,
   titleText?: string | React.Node,
-  titleTextClassName?: string,
+  titleTextClassName?: string
 };
 
 type State = {
-  searchTerm: string,
+  searchTerm: string
 };
 
 class SuperTable extends React.Component<Props, State> {
   static defaultProps = {
+    debounceTimeout: 200,
     emptyMessage: '',
     onHeaderSortClick: () => {},
     searchPlaceholderText: 'Search...',
     footer: null,
-    titleText: '',
+    titleText: ''
   };
 
   state = {
-    searchTerm: '',
+    searchTerm: ''
   };
 
-  debouncedFilter = debounce((searchTerm: string) => this.setState({ searchTerm }), 200);
+  debouncedFilter = debounce(
+    (searchTerm: string) => (
+      this.setState({ searchTerm }), this.props.debounceTimeout
+    )
+  );
 
   filterData = ({ target: { value } }: Object) => {
     const searchTerm = value;
@@ -62,11 +84,13 @@ class SuperTable extends React.Component<Props, State> {
       sortingIconClassName,
       tableClassName,
       titleText,
-      titleTextClassName,
+      titleTextClassName
     } = this.props;
 
     const newData = this.props.data.filter((dataItem: Array<any>) =>
-      dataItem.values.toLowerCase().includes(this.state.searchTerm.toLowerCase()),
+      dataItem.values
+        .toLowerCase()
+        .includes(this.state.searchTerm.toLowerCase())
     );
 
     return (
@@ -105,7 +129,9 @@ class SuperTable extends React.Component<Props, State> {
               </tr>
             </tbody>
           ) : (
-            <tbody className={bodyClassName}>{newData.map(({ row }) => row)}</tbody>
+            <tbody className={bodyClassName}>
+              {newData.map(({ row }) => row)}
+            </tbody>
           )}
         </table>
         {footer}

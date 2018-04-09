@@ -6,36 +6,36 @@ const initOrganizations = [
   {
     id: 1,
     name: 'First Org',
-    type: 'first',
+    type: 'first'
   },
   {
     id: 2,
     name: 'Second Org',
-    type: 'first',
+    type: 'first'
   },
   {
     id: 3,
     name: 'Third Org',
-    type: 'second',
+    type: 'second'
   },
   {
     id: 4,
     name: 'Fourth Org',
-    type: 'second',
-  },
+    type: 'second'
+  }
 ];
 
 const moreOrganizations = [
   {
     id: 5,
     name: 'Fifth Org',
-    type: 'third',
+    type: 'third'
   },
   {
     id: 6,
     name: 'Sixth Org',
-    type: 'third',
-  },
+    type: 'third'
+  }
 ];
 
 /* eslint-disable */
@@ -44,7 +44,7 @@ const moreOrganizations = [
 // which I've found to be much more accurate than anything else I've tried.
 const compareSortingValues = (key: string, order: boolean = true): Function => (
   a: Object,
-  b: Object,
+  b: Object
 ): number | boolean => {
   if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
     // property doesn't exist on either object
@@ -69,7 +69,7 @@ const compareSortingValues = (key: string, order: boolean = true): Function => (
 type State = {
   columnSortAsc: boolean,
   columnToSort: string,
-  organizations: Array<Object>,
+  organizations: Array<Object>
 };
 
 type Props = {};
@@ -78,18 +78,18 @@ class WithSimplePagination extends React.Component<Props, State> {
   state = {
     columnToSort: '',
     columnSortAsc: false,
-    organizations: initOrganizations,
+    organizations: initOrganizations
   };
 
   onHeaderSortClick = (key: string): void =>
     this.setState({
       columnSortAsc: !this.state.columnSortAsc,
-      columnToSort: key,
+      columnToSort: key
     });
 
   loadMoreOrgs = (): void =>
     this.setState({
-      organizations: [...this.state.organizations, ...moreOrganizations],
+      organizations: [...this.state.organizations, ...moreOrganizations]
     });
 
   render() {
@@ -111,19 +111,21 @@ class WithSimplePagination extends React.Component<Props, State> {
                   <td>{organization.name}</td>
                   <td>{organization.type}</td>
                 </tr>
-              ),
+              )
             }))}
-          footer={<button onClick={this.loadMoreOrgs}>Click to load more</button>}
-          emptyMessage={"There's no data."}
+          footer={
+            <button onClick={this.loadMoreOrgs}>Click to load more</button>
+          }
+          emptyMessage={'There\'s no data.'}
           headers={[
             {
               key: 'name',
-              value: 'Name',
+              value: 'Name'
             },
             {
               key: 'type',
-              value: 'Type',
-            },
+              value: 'Type'
+            }
           ]}
           onHeaderSortClick={this.onHeaderSortClick}
           tableClassName="table"
