@@ -1,6 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import SuperTable from '../src/';
+
+configure({ adapter: new Adapter() });
 
 describe('<SuperTable />', () => {
   const callback = jest.fn();
@@ -15,16 +18,16 @@ describe('<SuperTable />', () => {
             <tr key={1}>
               <td>First Org</td>
             </tr>
-          ),
-        },
+          )
+        }
       ]}
       errorBodyClassName="errorBodyClassName"
       footer={<p>Pagination could go here.</p>}
       headers={[
         {
           key: 'name',
-          value: 'Name',
-        },
+          value: 'Name'
+        }
       ]}
       headClassName="headClassName"
       searchInputClassName="searchInputClassName"
@@ -32,7 +35,7 @@ describe('<SuperTable />', () => {
       tableClassName="tableClassName"
       titleTextClassName="titleTextClassName"
       onHeaderSortClick={callback}
-    />,
+    />
   );
 
   it('Should test all class names', () => {
