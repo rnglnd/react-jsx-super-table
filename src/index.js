@@ -57,9 +57,8 @@ class SuperTable extends React.Component<Props, State> {
   };
 
   debouncedFilter = debounce(
-    (searchTerm: string) => (
-      this.setState({ searchTerm }), this.props.debounceTimeout
-    )
+    (searchTerm: string) => this.setState({ searchTerm }),
+    this.props.debounceTimeout
   );
 
   filterData = ({ target: { value } }: Object) => {

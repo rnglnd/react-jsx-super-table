@@ -43,6 +43,7 @@ There are other props you can avail of which are included in the table below:
 | bodyClassName | string | No |
 | className | string | No |
 | colSpanForEmpty | string | No |
+| debounceTimeout | number | No |
 | data | Array<{values: string, row: node}> | Yes |
 | emptyMessage | string | No |
 | errorBodyClassName | string | No |
