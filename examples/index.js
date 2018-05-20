@@ -1,13 +1,14 @@
 /* @flow */
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './style.css';
-import WithSorting from './WithSorting';
-import WithoutSorting from './WithoutSorting';
-import WithSimplePagination from './WithSimplePagination';
-import OneWithEverything from './OneWithEverything';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./style.css";
+import WithSorting from "./WithSorting";
+import WithoutSorting from "./WithoutSorting";
+import WithSimplePagination from "./WithSimplePagination";
+import OneWithEverything from "./OneWithEverything";
+import ExternalSearch from "./ExternalSearch";
 
-const div = document.createElement('div');
+const div = document.createElement("div");
 
 if (document.body) {
   document.body.appendChild(div);
@@ -23,6 +24,8 @@ const Example = () => (
     <WithSimplePagination />
     <hr />
     <OneWithEverything />
+    <hr />
+    <ExternalSearch />
   </div>
 );
 

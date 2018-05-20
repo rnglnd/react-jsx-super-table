@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 /* @flow */
 
 const debounce = (callback, timeout) => {
@@ -26,13 +26,15 @@ type Props = {
   debounceTimeout?: number,
   emptyMessage?: string,
   errorBodyClassName?: string,
+  footer?: React.Node,
+  getSearchString: () => string,
   headClassName?: string,
   headers: Array<{ key: string, value: string, sort?: boolean }>,
   onHeaderSortClick?: (key: string) => void,
+  isExternalSearch: boolean,
   searchInputClassName?: string,
   searchPlaceholderText?: string,
   sortingIconClassName?: string,
-  footer?: React.Node,
   tableClassName?: string,
   titleText?: string | React.Node,
   titleTextClassName?: string
@@ -45,26 +47,30 @@ type State = {
 class SuperTable extends React.Component<Props, State> {
   static defaultProps = {
     debounceTimeout: 200,
-    emptyMessage: '',
-    onHeaderSortClick: () => {},
-    searchPlaceholderText: 'Search...',
+    emptyMessage: "",
     footer: null,
-    titleText: ''
+    getSearchString: () => {},
+    isExternalSearch: false,
+    onHeaderSortClick: () => {},
+    searchPlaceholderText: "Search...",
+    titleText: ""
   };
 
   state = {
-    searchTerm: ''
+    searchTerm: ""
   };
 
   debouncedFilter = debounce(
-    (searchTerm: string) => this.setState({ searchTerm }),
+    (searchTerm: string) =>
+      this.setState({ searchTerm }, () => {
+        if (this.props.isExternalSearch) {
+          this.props.getSearchString(searchTerm);
+        }
+      }),
     this.props.debounceTimeout
   );
 
-  filterData = ({ target: { value } }: Object) => {
-    const searchTerm = value;
-    return this.debouncedFilter(searchTerm);
-  };
+  filterData = ({ target: { value } }: Object) => this.debouncedFilter(value);
 
   render() {
     const {
@@ -74,23 +80,27 @@ class SuperTable extends React.Component<Props, State> {
       data,
       emptyMessage,
       errorBodyClassName,
+      footer,
       headClassName,
       headers,
       onHeaderSortClick,
+      isExternalSearch,
       searchPlaceholderText,
-      footer,
       searchInputClassName,
       sortingIconClassName,
       tableClassName,
       titleText,
       titleTextClassName
     } = this.props;
+    const { searchTerm } = this.state;
 
-    const newData = this.props.data.filter((dataItem: Array<any>) =>
-      dataItem.values
-        .toLowerCase()
-        .includes(this.state.searchTerm.toLowerCase())
-    );
+    let newData = data;
+
+    if (!isExternalSearch) {
+      newData = this.props.data.filter((dataItem: Array<any>) =>
+        dataItem.values.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
 
     return (
       <div className={className}>
