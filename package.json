@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "description":
     "A lightweight table with search and soring options for a React app which takes regular JSX to render the body.",
+  "repository": "github:rnglnd/react-jsx-super-table",
   "main": "lib/index.js",
   "author": "Steven Ringland <steven.ringland@gmail.com>",
   "license": "MIT",
@@ -10,16 +11,13 @@
   "jsnext:main": "es/index.js",
   "unpkg": "dist/SuperTable.min.js",
   "scripts": {
-    "build": "npm run transpile:lib && npm run transpile:es",
-    "clean": "rimraf lib",
-    "precommit": "npm test && lint-staged",
     "flow": "flow",
+    "start": "webpack-dev-server --mode development",
+    "dev": "npm start",
     "test": "jest",
-    "dev": "webpack-dev-server --mode development",
-    "start": "npm run dev",
-    "transpile:lib": "babel src/ -d lib/",
-    "transpile:es": "BABEL_ENV=es babel src/ -d es/",
-    "prepublish": "npm run clean && npm run build"
+    "build": "babel src -d lib && BABEL_ENV=es babel src -d es",
+    "precommit": "npm test && lint-staged",
+    "prepublish": "rimraf lib && rimraf es && npm run build"
   },
   "lint-staged": {
     "*.{js,jsx,json}": ["prettier-eslint --write", "git add"]
