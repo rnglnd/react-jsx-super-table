@@ -1,6 +1,6 @@
 {
   "name": "react-jsx-super-table",
-  "version": "1.2.0",
+  "version": "1.3.0-0",
   "description":
     "A lightweight table with search and soring options for a React app which takes regular JSX to render the body.",
   "repository": "github:rnglnd/react-jsx-super-table",
