@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 /* @flow */
 
 const debounce = (callback, timeout) => {
@@ -47,17 +47,17 @@ type State = {
 class SuperTable extends React.Component<Props, State> {
   static defaultProps = {
     debounceTimeout: 200,
-    emptyMessage: "",
+    emptyMessage: '',
     footer: null,
     getSearchString: () => {},
     isExternalSearch: false,
     onHeaderSortClick: () => {},
-    searchPlaceholderText: "Search...",
-    titleText: ""
+    searchPlaceholderText: 'Search...',
+    titleText: ''
   };
 
   state = {
-    searchTerm: ""
+    searchTerm: ''
   };
 
   debouncedFilter = debounce(
