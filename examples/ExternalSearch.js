@@ -117,9 +117,7 @@ class ExternalSearch extends React.Component<Props, State> {
         <h2>External Search</h2>
 
         <SuperTable
-          bodyClassName="body--class"
           className="container"
-          colSpanForEmpty="2"
           data={filteredOrganizations
             .sort(compareSortingValues(columnToSort, columnSortAsc))
             .map(organization => ({
@@ -134,10 +132,7 @@ class ExternalSearch extends React.Component<Props, State> {
           footer={
             <button onClick={this.loadMoreOrgs}>Click to load more</button>
           }
-          emptyMessage={'There\'s no data.'}
-          errorBodyClassName="error--class"
           getSearchString={this.externalSearchFunction}
-          headClassName="head--class"
           headers={[
             {
               key: 'name',
@@ -150,12 +145,9 @@ class ExternalSearch extends React.Component<Props, State> {
           ]}
           onHeaderSortClick={this.onHeaderSortClick}
           isExternalSearch
-          searchInputClassName="search--class"
           searchPlaceholderText="Search..."
-          sortingIconClassName="sorting--icon"
-          tableClassName="table"
-          titleTextClassName="table__title"
-          titleText="This is a table title."
+          titleClassName="table__title"
+          title="This is a table title."
         />
       </div>
     );

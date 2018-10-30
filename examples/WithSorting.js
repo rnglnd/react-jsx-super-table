@@ -81,7 +81,6 @@ class WithSorting extends React.Component<Props, State> {
 
         <SuperTable
           className="container"
-          colSpanForEmpty="2"
           data={organizations
             .sort(compareSortingValues(columnToSort, columnSortAsc))
             .map(organization => ({
@@ -93,7 +92,6 @@ class WithSorting extends React.Component<Props, State> {
                 </tr>
               )
             }))}
-          emptyMessage={'There\'s no data.'}
           headers={[
             {
               key: 'name',
@@ -105,9 +103,8 @@ class WithSorting extends React.Component<Props, State> {
             }
           ]}
           onHeaderSortClick={this.onHeaderSortClick}
-          tableClassName="table"
-          titleTextClassName="table__title"
-          titleText="This is a table title."
+          titleClassName="table__title"
+          title="This is a table title."
         />
       </div>
     );

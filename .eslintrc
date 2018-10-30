@@ -1,5 +1,5 @@
 {
-  "extends": "unobtrusive",
+  "extends": ["unobtrusive", "plugin:react/recommended"],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
@@ -11,10 +11,13 @@
     "react/jsx-quotes": 0,
     "react/wrap-multilines": 0,
     "react/jsx-closing-tag-location": 0,
-    "react/jsx-sort-prop-types": 0
+    "react/jsx-sort-prop-types": 0,
+    "react/display-name": 0,
+    "prettier/prettier": "error"
   },
   "plugins": [
     "react",
-    "flowtype"
+    "flowtype",
+    "prettier"
   ]
 }

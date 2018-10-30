@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { type Node } from 'react';
 /* @flow */
 
 const debounce = (callback, timeout) => {
@@ -19,25 +19,18 @@ const debounce = (callback, timeout) => {
 };
 
 type Props = {
-  bodyClassName?: string,
   className?: string,
-  colSpanForEmpty?: string,
   data: Array<any>,
   debounceTimeout?: number,
-  emptyMessage?: string,
-  errorBodyClassName?: string,
-  footer?: React.Node,
-  getSearchString: () => string,
-  headClassName?: string,
+  footer?: string | Node,
+  getSearchString: (searchTerm: string) => string,
   headers: Array<{ key: string, value: string, sort?: boolean }>,
+  isExternalSearch?: boolean,
   onHeaderSortClick?: (key: string) => void,
-  isExternalSearch: boolean,
-  searchInputClassName?: string,
   searchPlaceholderText?: string,
-  sortingIconClassName?: string,
-  tableClassName?: string,
-  titleText?: string | React.Node,
-  titleTextClassName?: string
+  sortingIcon?: string | Node,
+  title?: string | Node,
+  titleClassName?: string
 };
 
 type State = {
@@ -47,13 +40,12 @@ type State = {
 class SuperTable extends React.Component<Props, State> {
   static defaultProps = {
     debounceTimeout: 200,
-    emptyMessage: '',
     footer: null,
     getSearchString: () => {},
     isExternalSearch: false,
     onHeaderSortClick: () => {},
     searchPlaceholderText: 'Search...',
-    titleText: ''
+    title: null
   };
 
   state = {
@@ -74,23 +66,16 @@ class SuperTable extends React.Component<Props, State> {
 
   render() {
     const {
-      bodyClassName,
       className,
-      colSpanForEmpty,
       data,
-      emptyMessage,
-      errorBodyClassName,
       footer,
-      headClassName,
       headers,
-      onHeaderSortClick,
       isExternalSearch,
+      onHeaderSortClick,
       searchPlaceholderText,
-      searchInputClassName,
-      sortingIconClassName,
-      tableClassName,
-      titleText,
-      titleTextClassName
+      sortingIcon,
+      title,
+      titleClassName
     } = this.props;
     const { searchTerm } = this.state;
 
@@ -104,44 +89,30 @@ class SuperTable extends React.Component<Props, State> {
 
     return (
       <div className={className}>
-        <div className={titleTextClassName}>
-          {titleText}
+        <div className={titleClassName}>
+          {title}
           <input
-            className={searchInputClassName}
             onChange={this.filterData}
             placeholder={searchPlaceholderText}
           />
         </div>
-        <table className={tableClassName}>
-          <thead className={headClassName}>
+        <table>
+          <thead>
             <tr>
               {headers.map(header => (
                 <th key={header.key}>
                   {header.value}
                   {onHeaderSortClick &&
                     header.sort !== false && (
-                      <button
-                        className={sortingIconClassName}
-                        onClick={() => onHeaderSortClick(header.key)}
-                      />
+                      <button onClick={() => onHeaderSortClick(header.key)}>
+                        {sortingIcon}
+                      </button>
                     )}
                 </th>
               ))}
             </tr>
           </thead>
-          {!data.length ? (
-            <tbody className={errorBodyClassName}>
-              <tr>
-                <td className="empty--cell" colSpan={colSpanForEmpty}>
-                  <p>{emptyMessage}</p>
-                </td>
-              </tr>
-            </tbody>
-          ) : (
-            <tbody className={bodyClassName}>
-              {newData.map(({ row }) => row)}
-            </tbody>
-          )}
+          <tbody>{newData.map(({ row }) => row)}</tbody>
         </table>
         {footer}
       </div>

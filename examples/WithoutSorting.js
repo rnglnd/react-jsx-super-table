@@ -59,7 +59,6 @@ const WithoutSorting = () => (
 
     <SuperTable
       className="container"
-      colSpanForEmpty="2"
       data={organizations.map(organization => ({
         values: `${organization.name}${organization.type}`,
         row: (
@@ -69,7 +68,6 @@ const WithoutSorting = () => (
           </tr>
         )
       }))}
-      emptyMessage={'There\'s no data.'}
       headers={[
         {
           key: 'name',
@@ -82,9 +80,8 @@ const WithoutSorting = () => (
           sort: false
         }
       ]}
-      tableClassName="table"
-      titleTextClassName="table__title"
-      titleText="This is a table title."
+      titleClassName="table__title"
+      title="This is a table title."
     />
   </div>
 );

@@ -100,9 +100,7 @@ class OneWithEverything extends React.Component<Props, State> {
         <h2>One With Everything</h2>
 
         <SuperTable
-          bodyClassName="body--class"
           className="container"
-          colSpanForEmpty="2"
           data={organizations
             .sort(compareSortingValues(columnToSort, columnSortAsc))
             .map(organization => ({
@@ -117,9 +115,7 @@ class OneWithEverything extends React.Component<Props, State> {
           footer={
             <button onClick={this.loadMoreOrgs}>Click to load more</button>
           }
-          emptyMessage={'There\'s no data.'}
-          errorBodyClassName="error--class"
-          headClassName="head--class"
+          emptyMessage={"There's no data."}
           headers={[
             {
               key: 'name',
@@ -131,12 +127,9 @@ class OneWithEverything extends React.Component<Props, State> {
             }
           ]}
           onHeaderSortClick={this.onHeaderSortClick}
-          searchInputClassName="search--class"
           searchPlaceholderText="Search..."
-          sortingIconClassName="sorting--icon"
-          tableClassName="table"
-          titleTextClassName="table__title"
-          titleText="This is a table title."
+          titleClassName="table__title"
+          title="This is a table title."
         />
       </div>
     );
