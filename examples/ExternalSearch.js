@@ -1,40 +1,40 @@
 /* @flow */
-import React from 'react';
-import SuperTable from '../src/index';
+import React from "react";
+import SuperTable from "../src/index";
 
 const initOrganizations = [
   {
     id: 1,
-    name: 'First Org',
-    type: 'first'
+    name: "First Org",
+    type: "first"
   },
   {
     id: 2,
-    name: 'Second Org',
-    type: 'first'
+    name: "Second Org",
+    type: "first"
   },
   {
     id: 3,
-    name: 'Third Org',
-    type: 'second'
+    name: "Third Org",
+    type: "second"
   },
   {
     id: 4,
-    name: 'Fourth Org',
-    type: 'second'
+    name: "Fourth Org",
+    type: "second"
   }
 ];
 
 const moreOrganizations = [
   {
     id: 5,
-    name: 'Fifth Org',
-    type: 'third'
+    name: "Fifth Org",
+    type: "third"
   },
   {
     id: 6,
-    name: 'Sixth Org',
-    type: 'third'
+    name: "Sixth Org",
+    type: "third"
   }
 ];
 
@@ -51,8 +51,8 @@ const compareSortingValues = (key: string, order: boolean = true): Function => (
     return 0;
   }
 
-  const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
-  const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+  const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key];
+  const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key];
 
   let comparison = 0;
 
@@ -77,7 +77,7 @@ type Props = {};
 
 class ExternalSearch extends React.Component<Props, State> {
   state = {
-    columnToSort: '',
+    columnToSort: "",
     columnSortAsc: false,
     filteredOrganizations: initOrganizations,
     organizations: initOrganizations
@@ -117,9 +117,7 @@ class ExternalSearch extends React.Component<Props, State> {
         <h2>External Search</h2>
 
         <SuperTable
-          bodyClassName="body--class"
           className="container"
-          colSpanForEmpty="2"
           data={filteredOrganizations
             .sort(compareSortingValues(columnToSort, columnSortAsc))
             .map(organization => ({
@@ -134,28 +132,22 @@ class ExternalSearch extends React.Component<Props, State> {
           footer={
             <button onClick={this.loadMoreOrgs}>Click to load more</button>
           }
-          emptyMessage={'There\'s no data.'}
-          errorBodyClassName="error--class"
           getSearchString={this.externalSearchFunction}
-          headClassName="head--class"
           headers={[
             {
-              key: 'name',
-              value: 'Name'
+              key: "name",
+              value: "Name"
             },
             {
-              key: 'type',
-              value: 'Type'
+              key: "type",
+              value: "Type"
             }
           ]}
           onHeaderSortClick={this.onHeaderSortClick}
           isExternalSearch
-          searchInputClassName="search--class"
           searchPlaceholderText="Search..."
-          sortingIconClassName="sorting--icon"
-          tableClassName="table"
-          titleTextClassName="table__title"
-          titleText="This is a table title."
+          titleClassName="table__title"
+          title="This is a table title."
         />
       </div>
     );

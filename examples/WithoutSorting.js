@@ -1,27 +1,27 @@
 /* @flow */
-import React from 'react';
-import SuperTable from '../src/index';
+import React from "react";
+import SuperTable from "../src/index";
 
 const organizations = [
   {
     id: 1,
-    name: 'First Org',
-    type: 'first'
+    name: "First Org",
+    type: "first"
   },
   {
     id: 2,
-    name: 'Second Org',
-    type: 'first'
+    name: "Second Org",
+    type: "first"
   },
   {
     id: 3,
-    name: 'Third Org',
-    type: 'second'
+    name: "Third Org",
+    type: "second"
   },
   {
     id: 4,
-    name: 'Fourth Org',
-    type: 'second'
+    name: "Fourth Org",
+    type: "second"
   }
 ];
 
@@ -38,8 +38,8 @@ const compareSortingValues = (key: string, order: boolean = true): Function => (
     return 0;
   }
 
-  const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
-  const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+  const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key];
+  const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key];
 
   let comparison = 0;
 
@@ -59,7 +59,6 @@ const WithoutSorting = () => (
 
     <SuperTable
       className="container"
-      colSpanForEmpty="2"
       data={organizations.map(organization => ({
         values: `${organization.name}${organization.type}`,
         row: (
@@ -69,22 +68,20 @@ const WithoutSorting = () => (
           </tr>
         )
       }))}
-      emptyMessage={'There\'s no data.'}
       headers={[
         {
-          key: 'name',
-          value: 'Name',
+          key: "name",
+          value: "Name",
           sort: false
         },
         {
-          key: 'type',
-          value: 'Type',
+          key: "type",
+          value: "Type",
           sort: false
         }
       ]}
-      tableClassName="table"
-      titleTextClassName="table__title"
-      titleText="This is a table title."
+      titleClassName="table__title"
+      title="This is a table title."
     />
   </div>
 );

@@ -16,7 +16,35 @@ $ npm install react-jsx-super-table
 
 The best way to see usages of the component is to look through our [examples](examples), you should be able to find an example for your needs. Also if you have a created a really nice implementation then please add it to the examples!
 
-This is a very simple component to use, the only props it requires are `data` (an array of objects containing `values`, a string to be searched on for the row and `row`, the row you want to display) and `headers` (an array obf objects containing `key`, `value` pairs which should be both strings along with an optional `sort` param to disable to column sorting).
+The only props required to use this component are `data` (an array of objects containing `values`, a string to be searched on for the row and `row`, the row you want to display) and it looks like this:
+
+```
+data={randomData
+  .map(random => ({
+    values: `${random.name}${random.type}`,
+    row: (
+      <tr key={random.id}>
+        <td>{random.name}</td>
+        <td>{random.type}</td>
+      </tr>
+    )
+  }))}
+```
+
+and `headers` (an array obf objects containing `key`, `value` pairs which should be both strings along with an optional `sort` param to disable to column sorting) which looks like this:
+
+```
+  headers={[
+    {
+      key: 'name',
+      value: 'Name'
+    },
+    {
+      key: 'type',
+      value: 'Type'
+    }
+  ]}
+```
 
 #### Sorting
 
@@ -50,25 +78,18 @@ There are other props you can avail of which are included in the table below:
 
 | Props        | Type         | Required |
 | ------------ | ------------ | ---------|
-| bodyClassName | string | No |
 | className | string | No |
-| colSpanForEmpty | string | No |
 | debounceTimeout | number | No |
 | data | Array<{values: string, row: node}> | Yes |
-| emptyMessage | string | No |
-| errorBodyClassName | string | No |
 | getSearchString | () => string | No (Yes for external search) |
-| headClassName | string | No |
 | headers | Array<{key: string, value: string, sort?: boolean}> | Yes |
 | isExternalSearch | boolean | No |
 | onHeaderSortClick | Function ((key: string) => void) | No |
-| searchInputClassName | string | No |
 | searchPlaceholderText | string | No |
-| sortingIconClassName | string | No |
+| sortingIcon | string | No |
 | footer | node | No |
-| tableClassName | string | No |
-| titleText | string/node | No |
-| titleTextClassName | string | No |
+| title | string/node | No |
+| titleClassName | string | No |
 
 ## Development
 

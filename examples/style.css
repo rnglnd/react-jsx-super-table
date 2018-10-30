@@ -4,7 +4,7 @@
   flex-direction: column;
 }
 
-.table {
+.container table {
   width: 100%;
   text-align: left;
 }
