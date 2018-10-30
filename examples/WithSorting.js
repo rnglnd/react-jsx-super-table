@@ -1,27 +1,27 @@
 /* @flow */
-import React from "react";
-import SuperTable from "../src/index";
+import React from 'react';
+import SuperTable from '../src/index';
 
 const organizations = [
   {
     id: 1,
-    name: "First Org",
-    type: "first"
+    name: 'First Org',
+    type: 'first'
   },
   {
     id: 2,
-    name: "Second Org",
-    type: "first"
+    name: 'Second Org',
+    type: 'first'
   },
   {
     id: 3,
-    name: "Third Org",
-    type: "second"
+    name: 'Third Org',
+    type: 'second'
   },
   {
     id: 4,
-    name: "Fourth Org",
-    type: "second"
+    name: 'Fourth Org',
+    type: 'second'
   }
 ];
 
@@ -38,8 +38,8 @@ const compareSortingValues = (key: string, order: boolean = true): Function => (
     return 0;
   }
 
-  const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key];
-  const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key];
+  const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+  const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
 
   let comparison = 0;
 
@@ -62,7 +62,7 @@ type Props = {};
 
 class WithSorting extends React.Component<Props, State> {
   state = {
-    columnToSort: "",
+    columnToSort: '',
     columnSortAsc: false
   };
 
@@ -94,12 +94,12 @@ class WithSorting extends React.Component<Props, State> {
             }))}
           headers={[
             {
-              key: "name",
-              value: "Name"
+              key: 'name',
+              value: 'Name'
             },
             {
-              key: "type",
-              value: "Type"
+              key: 'type',
+              value: 'Type'
             }
           ]}
           onHeaderSortClick={this.onHeaderSortClick}

@@ -1,4 +1,4 @@
-import React, { type Node } from "react";
+import React, { type Node } from 'react';
 /* @flow */
 
 const debounce = (callback, timeout) => {
@@ -44,12 +44,12 @@ class SuperTable extends React.Component<Props, State> {
     getSearchString: () => {},
     isExternalSearch: false,
     onHeaderSortClick: () => {},
-    searchPlaceholderText: "Search...",
+    searchPlaceholderText: 'Search...',
     title: null
   };
 
   state = {
-    searchTerm: ""
+    searchTerm: ''
   };
 
   debouncedFilter = debounce(
